@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Source+Serif+4:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdea5",
+                    "on-tertiary-container": "#b5914c",
+                    "on-background": "#1a1c1e",
+                    "tertiary": "#241800",
+                    "outline": "#73777f",
+                    "secondary": "#605e57",
+                    "background": "#f9f9fc",
+                    "secondary-fixed": "#e6e2d9",
+                    "on-secondary-fixed": "#1c1c16",
+                    "on-surface-variant": "#43474e",
+                    "tertiary-fixed-dim": "#e9c176",
+                    "primary": "#001b35",
+                    "surface-bright": "#f9f9fc",
+                    "primary-fixed-dim": "#a6c9f8",
+                    "surface-container-highest": "#e2e2e5",
+                    "surface-container-low": "#f3f3f6",
+                    "primary-fixed": "#d2e4ff",
+                    "on-tertiary-fixed-variant": "#5d4201",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#64635b",
+                    "surface-container-high": "#e8e8ea",
+                    "outline-variant": "#c3c6cf",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#a6c9f8",
+                    "surface-dim": "#dadadc",
+                    "surface-variant": "#e2e2e5",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#3d608a",
+                    "on-secondary-fixed-variant": "#484740",
+                    "on-primary-fixed-variant": "#234871",
+                    "primary-container": "#003057",
+                    "inverse-surface": "#2f3133",
+                    "surface-container": "#eeeef0",
+                    "surface": "#f9f9fc",
+                    "on-surface": "#1a1c1e",
+                    "on-primary-fixed": "#001c37",
+                    "on-primary-container": "#7699c5",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#e3dfd6",
+                    "secondary-fixed-dim": "#cac6be",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f0f0f3",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#3f2b00",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#261900"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "container-margin": "20px",
+                    "stack-md": "16px",
+                    "stack-sm": "4px",
+                    "base": "8px",
+                    "section-gap": "48px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "body-lg": ["Source Serif 4"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-sm": ["Playfair Display"],
+                    "body-md": ["Source Serif 4"],
+                    "body-sm": ["Source Serif 4"],
+                    "display-lg": ["Playfair Display"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "label-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        body { min-height: max(884px, 100dvh); }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-container-margin h-14 w-full z-50 bg-surface dark:bg-surface border-b border-outline-variant full-width top-0 sticky">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<span class="font-label-lg text-label-lg text-primary">São Paulo, SP</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary">TeatroFácil</h1>
+<button class="transition-all duration-200 active:scale-95 hover:opacity-80">
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="flex flex-col gap-section-gap pt-gutter">
+<!-- Hero Section: Featured Plays -->
+<section class="px-container-margin">
+<div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden shadow-sm border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A grand historical theater interior with ornate gold leaf details and velvet red curtains, bathed in dramatic warm spotlighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5vFPU5hxs1OQUU7q0XOXB2YrQqcDirDaQuSFwfnkhOxVBkPOth24CHU6BJTJ8m1vwpWmHodNhTlQ0nnvpvTUX64a5zJ6yylliwt1ycEDsO7GM61RTr8flu-zSzrQwnLrPLVofgymkMPPfvbutvjVgwGJcpKBZi3ql5vxyomY5UE9k-qlCo5W4DK-qabigCFc-HiJic2B9VZtZc9LeHC8XN2KOUf0mu9NXZEjAqPirhKCzALxy6aPK26R_mW88Q-62Yau53qbX9m0">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-gutter flex flex-col gap-base">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed w-fit px-2 py-0.5 rounded font-label-sm text-label-sm uppercase tracking-wider">Destaque da Semana</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-surface-bright">O Fantasma da Ópera</h2>
+<p class="font-body-sm text-body-sm text-surface-container-low opacity-90">Teatro Renault • São Paulo</p>
+<button class="mt-base bg-surface-bright text-primary w-fit px-gutter py-3 rounded-lg font-label-lg text-label-lg flex items-center gap-2 shadow-sm active:scale-95 transition-transform">
+                    Garantir Ingresso
+                    <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Category Horizontal Scrolling -->
+<section class="flex flex-col gap-stack-md">
+<div class="px-container-margin flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-primary">Categorias</h3>
+</div>
+<div class="flex overflow-x-auto gap-stack-md px-container-margin no-scrollbar">
+<button class="flex flex-col items-center gap-base flex-shrink-0 group">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-active:scale-90 transition-transform border border-outline-variant">
+<span class="material-symbols-outlined text-[28px]" data-icon="theater_comedy">theater_comedy</span>
+</div>
+<span class="font-label-md text-label-md">Comédia</span>
+</button>
+<button class="flex flex-col items-center gap-base flex-shrink-0 group">
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container group-active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[28px]" data-icon="masks">masks</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">Drama</span>
+</button>
+<button class="flex flex-col items-center gap-base flex-shrink-0 group">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-active:scale-90 transition-transform border border-outline-variant">
+<span class="material-symbols-outlined text-[28px]" data-icon="music_note">music_note</span>
+</div>
+<span class="font-label-md text-label-md">Musical</span>
+</button>
+<button class="flex flex-col items-center gap-base flex-shrink-0 group">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-active:scale-90 transition-transform border border-outline-variant">
+<span class="material-symbols-outlined text-[28px]" data-icon="child_care">child_care</span>
+</div>
+<span class="font-label-md text-label-md">Infantil</span>
+</button>
+<button class="flex flex-col items-center gap-base flex-shrink-0 group">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-active:scale-90 transition-transform border border-outline-variant">
+<span class="material-symbols-outlined text-[28px]" data-icon="magic_button">magic_button</span>
+</div>
+<span class="font-label-md text-label-md">Mágica</span>
+</button>
+</div>
+</section>
+<!-- Plays In Cartaz -->
+<section class="px-container-margin flex flex-col gap-stack-md">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-primary">Peças em Cartaz</h3>
+<button class="text-secondary font-label-lg text-label-lg">Ver Todas</button>
+</div>
+<div class="flex flex-col gap-gutter">
+<!-- Card 1 -->
+<div class="flex gap-stack-md bg-surface-container-lowest p-stack-sm rounded-xl border border-outline-variant shadow-sm transition-all hover:shadow-md">
+<img class="w-24 h-32 object-cover rounded-lg" data-alt="A cinematic portrait of a dramatic theater actor on stage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADtpzxQoXCfmXXwl1PmXJpuJef45tosS6xqA-fR1JFxL4-iY2QKO31qfOb00gNXf_ujLc87CQqVsqeGcIK7J4SH5AA_ZCYlrUFiFYbp452Df97YSjOs1Jzk0EDET-kFqmSaA522bv9HcNsvgdPTHUPnCiBH5siaqvuGzx8RA1Lt0lGK6popFK6dPxXEwlgFyydqheGKP8LgrHtD4D3c-ILhNyBBClRwIu3dDYzcQ5-zJj-usf-WhDKhVRTdPscsFUWmaFW6ZCpFXE">
+<div class="flex flex-col justify-center gap-stack-sm flex-1">
+<span class="bg-secondary-container text-on-secondary-container w-fit px-2 py-0.5 rounded font-label-sm text-label-sm">Sessão Extra</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface truncate">Hamlet: A Vingança</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="meeting_room">meeting_room</span>
+                        Teatro Municipal
+                    </p>
+<div class="mt-auto flex justify-between items-end">
+<p class="font-label-md text-label-md text-on-surface-variant">A partir de <span class="font-headline-sm text-headline-sm text-primary block">R$ 80,00</span></p>
+<button class="bg-primary text-on-primary px-4 py-2 rounded font-label-md text-label-md active:scale-95 transition-transform">Comprar</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex gap-stack-md bg-surface-container-lowest p-stack-sm rounded-xl border border-outline-variant shadow-sm transition-all hover:shadow-md">
+<img class="w-24 h-32 object-cover rounded-lg" data-alt="Modern stage performers in a high-energy dance sequence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP9F4Dd0EJyClAqRrPfkEzjlPAD3WQn0nJngbdHYdgmWUS0FydK4IHLLCPsjjdYxVaSKJ_ncr-vFDfQg1y5z2JY-00ATdVk8ACmxavjZv0rpt2FsgcsQ3c8ZlSkirS7jrhB-AYVsdBi-CcPHrF1bmqjyYLqa8xSph1ocF-ldb81v3Q1IG-2ZQzTuUPV59EokYNT39LaRNc4zyot0rv6hBsO9Boc-rD3P1UNrQqWFjyVOvHVghetqRZIFR5Z0-Xi3Es2QSEpdTjrug">
+<div class="flex flex-col justify-center gap-stack-sm flex-1">
+<span class="bg-secondary-container text-on-secondary-container w-fit px-2 py-0.5 rounded font-label-sm text-label-sm">Esgotando</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface truncate">Chicago: O Musical</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="meeting_room">meeting_room</span>
+                        Teatro Santander
+                    </p>
+<div class="mt-auto flex justify-between items-end">
+<p class="font-label-md text-label-md text-on-surface-variant">A partir de <span class="font-headline-sm text-headline-sm text-primary block">R$ 120,00</span></p>
+<button class="bg-primary text-on-primary px-4 py-2 rounded font-label-md text-label-md active:scale-95 transition-transform">Comprar</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex gap-stack-md bg-surface-container-lowest p-stack-sm rounded-xl border border-outline-variant shadow-sm transition-all hover:shadow-md">
+<img class="w-24 h-32 object-cover rounded-lg" data-alt="A minimalist theater poster style image with a single spotlight hitting a wooden chair on an empty stage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEAohMDyZb7B1W4DriGsLyblTvf8h7R092PTkQxaRAIE5ThGEHywaF0WQRDcMDVR4zulWcEMIUVsnVw9uDLnUHVT8Fq9V0HGssYaQYDNWOOesnKvt0LFFhrPkY9cT6lz0qEAG7swbg0FTEHM1V6n_PKXvumsgeDxvoXQo0ziBXMjCI1WGlSabOfG6rtKT1IBV6BEdsVQGGdZoqNgyrnt0BGvA2nFiq4DrPuLFdVg2zvCEXALONoZ0NrNs7arhW5YNt2OxlKgBAXiA">
+<div class="flex flex-col justify-center gap-stack-sm flex-1">
+<span class="bg-secondary-container text-on-secondary-container w-fit px-2 py-0.5 rounded font-label-sm text-label-sm">Estreia</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface truncate">Esperando Godot</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="meeting_room">meeting_room</span>
+                        Teatro Oficina
+                    </p>
+<div class="mt-auto flex justify-between items-end">
+<p class="font-label-md text-label-md text-on-surface-variant">A partir de <span class="font-headline-sm text-headline-sm text-primary block">R$ 60,00</span></p>
+<button class="bg-primary text-on-primary px-4 py-2 rounded font-label-md text-label-md active:scale-95 transition-transform">Comprar</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 px-4 bg-surface/90 backdrop-blur-md border-t border-outline-variant shadow-sm z-50">
+<button class="flex flex-col items-center justify-center text-primary font-bold transition-transform duration-200 active:scale-90">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm">Início</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-transform duration-200 active:scale-90">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-label-sm text-label-sm">Meus Ingressos</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-transform duration-200 active:scale-90">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Perfil</span>
+</button>
+</nav>
+</body></html>

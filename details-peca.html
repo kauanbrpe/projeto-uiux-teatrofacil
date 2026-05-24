@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2f3133",
+                    "surface-bright": "#f9f9fc",
+                    "inverse-on-surface": "#f0f0f3",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eeeef0",
+                    "on-tertiary-fixed": "#261900",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#e3dfd6",
+                    "surface-tint": "#3d608a",
+                    "surface-container-highest": "#e2e2e5",
+                    "on-primary-fixed": "#001c37",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#43474e",
+                    "secondary-fixed": "#e6e2d9",
+                    "on-background": "#1a1c1e",
+                    "primary-fixed-dim": "#a6c9f8",
+                    "on-surface": "#1a1c1e",
+                    "surface-variant": "#e2e2e5",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#cac6be",
+                    "surface-dim": "#dadadc",
+                    "on-tertiary-container": "#b5914c",
+                    "tertiary": "#241800",
+                    "inverse-primary": "#a6c9f8",
+                    "surface-container-low": "#f3f3f6",
+                    "background": "#f9f9fc",
+                    "primary-container": "#003057",
+                    "surface": "#f9f9fc",
+                    "on-primary-container": "#7699c5",
+                    "tertiary-container": "#3f2b00",
+                    "primary-fixed": "#d2e4ff",
+                    "on-secondary-container": "#64635b",
+                    "on-tertiary-fixed-variant": "#5d4201",
+                    "on-secondary-fixed-variant": "#484740",
+                    "outline": "#73777f",
+                    "surface-container-high": "#e8e8ea",
+                    "tertiary-fixed": "#ffdea5",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#605e57",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c3c6cf",
+                    "on-secondary-fixed": "#1c1c16",
+                    "tertiary-fixed-dim": "#e9c176",
+                    "primary": "#003057",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#234871"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "stack-lg": "32px",
+                    "section-gap": "48px",
+                    "stack-sm": "4px",
+                    "base": "8px",
+                    "container-margin": "20px",
+                    "stack-md": "16px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Playfair Display"],
+                    "label-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-sm": ["10px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #f9f9fc; }
+        .glass-nav { backdrop-filter: blur(12px); }
+        .custom-shadow { box-shadow: 0 4px 12px rgba(26, 28, 30, 0.04); }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center px-container-margin h-14 w-full z-50 fixed top-0 bg-surface/80 backdrop-blur-md transition-all duration-200">
+<button class="text-primary transition-all duration-200 active:scale-95 hover:opacity-80">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary">TeatroFácil</h1>
+<button class="text-primary transition-all duration-200 active:scale-95 hover:opacity-80">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</header>
+<main class="pb-32">
+<!-- Hero Image Section -->
+<section class="relative w-full aspect-[3/4] md:aspect-video overflow-hidden">
+<img alt="The Phantom of the Opera" class="w-full h-full object-cover" data-alt="A cinematic, high-resolution theater production poster showcasing a dramatic stage scene with a single spotlight illuminating a masked figure in opulent 19th-century attire. The lighting is moody and atmospheric, with deep burgundy and charcoal shadows contrasted by brilliant gold accents. The overall aesthetic is elegant and editorial, evoking the luxury of a premium theatrical experience in a modern light-mode setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN8wORrmbq9CpBFBcjRr4ijN9r7hIZROxBle5HVPqmXV_boNF5YrmPmMKJwhGfdKSPjFxC9OVOTloyv84K2jGd7nzAZsnANW1UESzfIN7MBxMtNXFjPdkpYs9FEJQ4-ONKtdW9eZk4sDSJlMFonU-P_vgF6Qbhmvk9eFMP_MWCxj8FoNlmvQ1QqJTJVlkuLpsUA7gQrthRs106BUuvDa6WBVHPs1QDsthpsLI2Tw93NxjfhFkbTT0f3_jMfc7qNbecwxfd3KONacs">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</section>
+<!-- Play Info Section -->
+<section class="px-container-margin -mt-12 relative z-10">
+<div class="bg-surface-container-lowest p-stack-md rounded-xl custom-shadow border border-outline-variant/30">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded text-label-sm font-label-sm uppercase tracking-wider">Premium</span>
+<div class="flex items-center gap-1 text-on-tertiary-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md">4.9 (2.4k reviews)</span>
+</div>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary mb-2">O Fantasma da Ópera</h2>
+<div class="flex flex-wrap gap-stack-md text-on-surface-variant font-label-md text-label-md">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="theater_comedy">theater_comedy</span>
+<span>Musical Drama</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span>
+<span>2h 30min</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified_user">verified_user</span>
+<span>Classificação: 12+</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Synopsis Section -->
+<section class="mt-section-gap px-container-margin">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-stack-md">Sinopse</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Baseado no romance clássico de Gaston Leroux, esta produção lendária conta a história de uma figura mascarada que vive nas catacumbas da Ópera de Paris. Sua obsessão por uma jovem soprano, Christine Daaé, desencadeia uma série de eventos dramáticos e apaixonantes. Uma jornada épica através da música, do mistério e do romance que cativou milhões em todo o mundo.
+            </p>
+</section>
+<!-- Dates and Times Selector -->
+<section class="mt-section-gap px-container-margin">
+<div class="flex justify-between items-end mb-stack-md">
+<h3 class="font-headline-sm text-headline-sm text-primary">Datas e Horários</h3>
+<span class="font-label-md text-label-md text-primary underline cursor-pointer">Ver calendário</span>
+</div>
+<div class="flex gap-stack-md overflow-x-auto pb-4 scrollbar-hide">
+<!-- Date Card Active -->
+<div class="flex-shrink-0 w-20 aspect-[3/4] bg-primary text-on-primary rounded-lg flex flex-col items-center justify-center transition-all active:scale-95 shadow-md">
+<span class="font-label-sm text-label-sm uppercase opacity-80">OUT</span>
+<span class="font-headline-md text-headline-md">14</span>
+<span class="font-label-md text-label-md">Sáb</span>
+</div>
+<!-- Date Card Inactive -->
+<div class="flex-shrink-0 w-20 aspect-[3/4] bg-surface-container border border-outline-variant/30 rounded-lg flex flex-col items-center justify-center transition-all hover:bg-surface-container-high active:scale-95">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">OUT</span>
+<span class="font-headline-md text-headline-md text-on-surface">15</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Dom</span>
+</div>
+<!-- Date Card Inactive -->
+<div class="flex-shrink-0 w-20 aspect-[3/4] bg-surface-container border border-outline-variant/30 rounded-lg flex flex-col items-center justify-center transition-all hover:bg-surface-container-high active:scale-95">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">OUT</span>
+<span class="font-headline-md text-headline-md text-on-surface">19</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Qui</span>
+</div>
+<!-- Date Card Inactive -->
+<div class="flex-shrink-0 w-20 aspect-[3/4] bg-surface-container border border-outline-variant/30 rounded-lg flex flex-col items-center justify-center transition-all hover:bg-surface-container-high active:scale-95">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">OUT</span>
+<span class="font-headline-md text-headline-md text-on-surface">20</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Sex</span>
+</div>
+</div>
+<!-- Time Slots -->
+<div class="mt-stack-md flex flex-wrap gap-stack-md">
+<button class="px-gutter py-2 rounded-full border border-primary text-primary font-label-lg text-label-lg hover:bg-primary-fixed active:scale-95 transition-all">
+                    16:00
+                </button>
+<button class="px-gutter py-2 rounded-full bg-primary text-on-primary font-label-lg text-label-lg active:scale-95 transition-all shadow-sm">
+                    19:30
+                </button>
+<button class="px-gutter py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-lg text-label-lg opacity-40 cursor-not-allowed">
+                    21:00
+                </button>
+</div>
+</section>
+<!-- Venue Preview -->
+<section class="mt-section-gap px-container-margin">
+<div class="bg-surface-container rounded-xl p-stack-md flex items-center gap-stack-md">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Teatro Renault" class="w-full h-full object-cover" data-alt="A detailed, close-up interior shot of a majestic classical theater hall. High-key lighting emphasizes the intricate gold leaf moldings, deep red velvet curtains, and plush seating. The photograph is taken from a low angle looking towards the stage, capturing a sense of grandeur and historical significance. The style is editorial and architectural, following a warm, luxurious color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ1vdqoLLN9o1Ixp3BoG-TaBvqlQLXt51fTClm_xl4jss6hB5yJ5EqAa4Xrgc2VfeLzhC1Z6Dom046il8EmGwwlJPmzwuCI74SDDjBmAHDWkS2UXBwDHEQteF3YJs1w2orTp97RVbN1ZozuA2LDab8dQRmyOmdo-W5hCgBkebzLyuRU3fZWYdvU70WhWji6PEu931JcVv7sIrbnf4xiV5ZweuDeJXUmxCTy0or0TFtif-HLnxdI4iFDghEnIawZGFI6f--29jwGmM">
+</div>
+<div class="flex-grow">
+<h4 class="font-label-lg text-label-lg text-on-surface">Teatro Renault</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Av. Brigadeiro Luís Antônio, 411</p>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="map">map</span>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom CTA -->
+<div class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md border-t border-outline-variant/30 px-container-margin py-stack-md z-50 flex items-center justify-between gap-gutter">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">A partir de</span>
+<span class="font-headline-md text-headline-md text-primary">R$ 120,00</span>
+</div>
+<button class="flex-grow max-w-[200px] h-14 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg uppercase tracking-widest shadow-lg hover:opacity-95 active:scale-95 transition-all flex items-center justify-center gap-2">
+<span>Selecionar Assentos</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="event_seat">event_seat</span>
+</button>
+</div>
+</body></html>

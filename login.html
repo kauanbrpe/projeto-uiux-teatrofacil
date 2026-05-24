@@ -1,0 +1,234 @@
+<!DOCTYPE html><html class="light" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TeatroFácil - Login</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f5f3ee",
+                        "tertiary": "#272727",
+                        "primary-container": "#003057",
+                        "on-error": "#ffffff",
+                        "surface-container": "#f0eee9",
+                        "inverse-surface": "#30312e",
+                        "outline-variant": "#c3c6cf",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "on-background": "#1a1c1e",
+                        "on-secondary-fixed-variant": "#484740",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#3d3d3d",
+                        "background": "#f9f9fc",
+                        "surface-dim": "#dadadc",
+                        "on-secondary-fixed": "#1c1c16",
+                        "secondary-fixed-dim": "#cac6be",
+                        "secondary": "#605e57",
+                        "primary-fixed-dim": "#a6c9f8",
+                        "on-surface-variant": "#43474e",
+                        "tertiary-fixed": "#e4e2e1",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e2e2e5",
+                        "outline": "#73777f",
+                        "on-primary-fixed-variant": "#234871",
+                        "on-surface": "#1a1c1e",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "surface-container-high": "#e8e8ea",
+                        "inverse-primary": "#a6c9f8",
+                        "surface": "#f9f9fc",
+                        "primary": "#001b35",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9fc",
+                        "secondary-fixed": "#e6e2d9",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#001c37",
+                        "inverse-on-surface": "#f0f0f3",
+                        "surface-tint": "#3d608a",
+                        "primary-fixed": "#d2e4ff",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "secondary-container": "#e3dfd6",
+                        "on-tertiary-container": "#b5914c",
+                        "on-secondary-container": "#64635b",
+                        "surface-variant": "#e2e2e5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#7699c5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "4px",
+                        "gutter": "16px",
+                        "container-margin": "20px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px",
+                        "section-gap": "48px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-sm": ["10px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0, 48, 87, 0) 0%, rgba(0, 48, 87, 0.8) 100%);
+        }
+        .input-focus-effect:focus-within {
+            border-color: #003057;
+            box-shadow: 0 0 0 1px #003057;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md text-body-md antialiased overflow-x-hidden">
+<!-- Login Container -->
+<main class="relative flex flex-col min-h-screen w-full max-w-md mx-auto overflow-hidden">
+<!-- Top Visual Section: Classic Theater Interior -->
+<section class="relative h-[35vh] w-full flex-shrink-0">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A majestic grand theater interior" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBzGCSoL5uU7_fy2z3uPn37bMJ9WeoVRGl6kjkIPmSRaX0pwC165rCQ2MdUBO2INZZo3nDarI41qZaMsDXq8VRkJVnD2gcyAFFNZShz7NWTLW04Z00hlbhmgdg-KqnYGfq0wsmZA9__lbwm5dhQB1CVSGYpUQlvN6b7i_KpS1-3FN6tAGDLy-K90J9DlOpXicAGfi136c45hPYlSiX8ZW8fvvUWNFH4VbDyssfKB5HjEjqfVBYttPNcPPl-qKiM-KRlTix7hwpo29o')"></div>
+<div class="absolute inset-0 hero-gradient"></div>
+<!-- Branding Overlay -->
+<div class="absolute inset-0 flex flex-col items-center justify-center pt-base">
+<img alt="TeatroFácil Logo" class="h-24 w-24 object-contain mb-4 drop-shadow-lg" src="https://lh3.googleusercontent.com/aida/ADBb0uimzMKMNw_FNfUfuZdH8XOhnMpPwoBGgoS_H75X8qwc5Ef37qtp3Bu8eW4CUpgNIC8F-UPmrc8DGDUpC7ICvN_1jEHNMCBe9ohNpPj7yl7fs2zqV9JQ2zsEnB06qXScEwcx7sNmnLQn3qtcIlW3keFbL9PjXAPeKzsHGi0WNFTO6YpuGKC6V8-MgkA7mO8DQ2RlpWK0gaeKgFR0cvEHESt9cKB6QDOlAA_KhYFSk3kgdxQ1DqDAXpH7DA">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-white tracking-tight">TeatroFácil</h1>
+</div>
+</section>
+<!-- Content Canvas -->
+<section class="flex-grow flex flex-col px-container-margin -mt-8 relative z-10 bg-background rounded-t-[24px] pt-stack-lg pb-stack-lg shadow-[0_-8px_24px_rgba(0,0,0,0.05)]">
+<header class="mb-stack-lg text-center">
+<h2 class="font-headline-md text-headline-md text-primary mb-1">Bem-vindo à plateia</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Acesse sua conta para garantir os melhores lugares.</p>
+</header>
+<!-- Login Form -->
+<form class="flex flex-col gap-stack-md flex-grow" id="loginForm">
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant ml-1" for="email">E-MAIL</label>
+<div class="input-focus-effect flex items-center bg-surface-container-low border border-outline-variant rounded-lg px-4 h-12 transition-all">
+<span class="material-symbols-outlined text-outline mr-3">mail</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface placeholder-on-surface-variant/50" id="email" name="email" placeholder="nome@exemplo.com" required="" type="email">
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between items-center px-1">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">SENHA</label>
+<a class="font-label-md text-label-md text-secondary hover:underline" href="#">Esqueci a senha</a>
+</div>
+<div class="input-focus-effect flex items-center bg-surface-container-low border border-outline-variant rounded-lg px-4 h-12 transition-all">
+<span class="material-symbols-outlined text-outline mr-3">lock</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface placeholder-on-surface-variant/50" id="password" name="password" placeholder="••••••••" required="" type="password">
+<button class="text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Primary CTA -->
+<button class="mt-4 bg-primary-container text-white font-label-lg text-label-lg h-14 rounded-lg shadow-sm active:scale-[0.98] transition-all flex items-center justify-center gap-2 group" type="submit">
+<span>ENTRAR</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</form>
+<!-- Social Login & Divider -->
+<div class="mt-stack-lg">
+<div class="relative flex items-center justify-center mb-stack-lg">
+<div class="absolute w-full border-t border-outline-variant"></div>
+<span class="relative px-4 bg-background font-label-md text-label-md text-on-surface-variant">OU ACESSE COM</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 border border-outline-variant rounded-lg h-12 bg-white hover:bg-surface-container transition-colors active:scale-95 shadow-[0_2px_4px_rgba(0,0,0,0.02)]">
+<svg class="w-5 h-5" viewBox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 1.2-4.53z" fill="#EA4335"></path>
+</svg>
+<span class="font-label-md text-label-md text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 border border-outline-variant rounded-lg h-12 bg-white hover:bg-surface-container transition-colors active:scale-95 shadow-[0_2px_4px_rgba(0,0,0,0.02)]">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+<path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-.53-.26-1.07-.42-1.61-.42-.55 0-1.12.16-1.63.42-1.18.57-2.03.54-2.98-.4C5.43 17.72 4.07 12.11 6.53 7.82c1.2-2.1 3.3-3.3 5.3-3.3.62 0 1.34.16 1.83.33 1.35.45 1.95.53 2.58.53.53 0 1.25-.13 2.05-.53.77-.4 1.7-.6 2.5-.33 2.03.65 3.53 2.45 4.3 4.15-3.6 1.7-3.03 6.3.57 7.78-.7 1.7-1.63 3.1-2.62 3.86zM15.53 4.5c-.15-2.45 1.85-4.5 4.1-4.5.23 2.3-2.15 4.5-4.1 4.5z"></path>
+</svg>
+<span class="font-label-md text-label-md text-on-surface">Apple</span>
+</button>
+</div>
+</div>
+<!-- Footer Link -->
+<footer class="mt-auto pt-stack-lg text-center pb-4">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Novo por aqui? <a class="text-primary font-label-md text-label-md font-bold hover:underline" href="#">Crie sua conta</a>
+</p>
+</footer>
+</section>
+</main>
+<!-- Subtle Background Accent -->
+<div class="fixed top-0 right-0 w-64 h-64 bg-secondary-container/10 rounded-full blur-[100px] -z-10"></div>
+<div class="fixed bottom-0 left-0 w-96 h-96 bg-primary-container/5 rounded-full blur-[120px] -z-10"></div>
+<script>
+    // Simple micro-interactions
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('focus', () => {
+            input.parentElement.classList.add('border-primary');
+        });
+        input.addEventListener('blur', () => {
+            input.parentElement.classList.remove('border-primary');
+        });
+    });
+
+    // Toggle password visibility
+    const passwordInput = document.getElementById('password');
+    const toggleButton = document.querySelector('button .material-symbols-outlined');
+    
+    if (toggleButton && passwordInput) {
+        toggleButton.parentElement.addEventListener('click', () => {
+            const isPass = passwordInput.type === 'password';
+            passwordInput.type = isPass ? 'text' : 'password';
+            toggleButton.textContent = isPass ? 'visibility_off' : 'visibility';
+        });
+    }
+</script>
+</body></html>
