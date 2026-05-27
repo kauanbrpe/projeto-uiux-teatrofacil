@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TeatroFácil - Pagamento</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "inverse-surface": "#30312e",
+          "surface-bright": "#fbf9f4",
+          "surface-container": "#f0eee9",
+          "error-container": "#ffdad6",
+          "on-error": "#ffffff",
+          "secondary-container": "#ffdea5",
+          "surface-container-highest": "#e4e2dd",
+          "on-primary-fixed": "#001c37",
+          "on-error-container": "#93000a",
+          "error": "#ba1a1a",
+          "on-surface-variant": "#43474e",
+          "secondary-fixed": "#ffdea5",
+          "on-background": "#1a1c1e",
+          "primary-fixed-dim": "#a6c9f8",
+          "on-surface": "#1a1c1e",
+          "surface-variant": "#e2e2e5",
+          "on-secondary": "#ffffff",
+          "secondary-fixed-dim": "#e9c176",
+          "surface-dim": "#dadadc",
+          "on-tertiary-container": "#b5914c",
+          "tertiary": "#241800",
+          "inverse-primary": "#a6c9f8",
+          "surface-container-low": "#f3f3f6",
+          "background": "#f9f9fc",
+          "primary-container": "#003057",
+          "surface": "#f9f9fc",
+          "on-primary-container": "#7699c5",
+          "tertiary-container": "#3f2b00",
+          "primary-fixed": "#d2e4ff",
+          "on-secondary-container": "#64635b",
+          "outline": "#73777f",
+          "surface-container-high": "#e8e8ea",
+          "tertiary-fixed": "#ffdea5",
+          "on-tertiary": "#ffffff",
+          "secondary": "#605e57",
+          "on-primary": "#ffffff",
+          "outline-variant": "#c3c6cf",
+          "on-secondary-fixed": "#1c1c16",
+          "tertiary-fixed-dim": "#e9c176",
+          "primary": "#003057",
+          "surface-container-lowest": "#ffffff",
+          "on-primary-fixed-variant": "#234871"
+        },
+        borderRadius: {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        spacing: {
+          "gutter": "16px",
+          "stack-lg": "32px",
+          "section-gap": "48px",
+          "stack-sm": "4px",
+          "base": "8px",
+          "container-margin": "20px",
+          "stack-md": "16px"
+        },
+        fontFamily: {
+          "headline-sm": ["Playfair Display"],
+          "label-md": ["Inter"],
+          "body-sm": ["Inter"],
+          "headline-md": ["Playfair Display"],
+          "body-md": ["Inter"],
+          "headline-lg": ["Playfair Display"],
+          "label-lg": ["Inter"],
+          "label-sm": ["Inter"]
+        },
+        fontSize: {
+          "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+          "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+          "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+          "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+          "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+          "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+          "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600" }],
+          "label-sm": ["10px", { lineHeight: "14px", letterSpacing: "0.05em", fontWeight: "500" }]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+  }
+  body { min-height: max(884px, 100dvh); }
+ 
+  /* Tabs de método */
+  .method-tab {
+    flex: 1;
+    padding: 10px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border: none;
+    background: transparent;
+    color: #73777f;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .method-tab.active {
+    color: #003057;
+    border-bottom: 2px solid #003057;
+  }
+ 
+  /* Campos */
+  .field-group { display: flex; flex-direction: column; gap: 6px; }
+  .field-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #43474e;
+  }
+  .field-input {
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #c3c6cf;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #1a1c1e;
+    background: #ffffff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+  }
+  .field-input:focus {
+    border-color: #003057;
+    box-shadow: 0 0 0 1px #003057;
+  }
+  .field-input::placeholder { color: #a0a4ab; }
+  .field-input.invalid {
+    border-color: #ba1a1a;
+    box-shadow: 0 0 0 1px #ba1a1a;
+  }
+  .field-error {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #ba1a1a;
+    display: none;
+  }
+  .field-error.show { display: block; }
+ 
+  /* Card visual */
+  .card-preview {
+    width: 100%;
+    max-width: 320px;
+    height: 180px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #001b35 0%, #003057 60%, #234871 100%);
+    position: relative;
+    padding: 20px 24px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 8px 24px rgba(0,48,87,0.25);
+    overflow: hidden;
+    user-select: none;
+  }
+  .card-preview::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .card-preview::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -20px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .card-chip {
+    width: 36px; height: 28px;
+    background: linear-gradient(135deg, #e9c176, #b5914c);
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .card-number-display {
+    font-size: 17px;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    margin-bottom: 16px;
+    opacity: 0.95;
+  }
+  .card-meta { display: flex; justify-content: space-between; align-items: flex-end; }
+  .card-meta-label { font-size: 9px; letter-spacing: 0.08em; opacity: 0.6; text-transform: uppercase; margin-bottom: 2px; }
+  .card-meta-value { font-size: 13px; font-weight: 500; }
+ 
+  /* PIX QR */
+  .pix-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    background: white;
+    border: 1px solid #e2e2e5;
+    border-radius: 12px;
+  }
+  .pix-qr {
+    width: 160px; height: 160px;
+    background: white;
+    padding: 12px;
+    border: 1px solid #e2e2e5;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 2px;
+  }
+  .pix-cell { border-radius: 1px; }
+  .pix-key {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #43474e;
+    background: #f3f3f6;
+    border: 1px solid #e2e2e5;
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-align: center;
+    word-break: break-all;
+    width: 100%;
+  }
+ 
+  /* Overlay de processamento */
+  #processing-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(249,249,252,0.95);
+    z-index: 100;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  #processing-overlay.show { display: flex; }
+  .spinner {
+    width: 52px; height: 52px;
+    border: 3px solid #e2e2e5;
+    border-top-color: #003057;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .success-icon {
+    width: 64px; height: 64px;
+    background: #003057;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+</style>
+</head>
+ 
+<body class="bg-background text-on-background min-h-screen font-body-md">
+ 
+<!-- Processing Overlay -->
+<div id="processing-overlay">
+  <div id="overlay-spinner" class="spinner"></div>
+  <div id="overlay-success" class="success-icon" style="display:none">
+    <span class="material-symbols-outlined text-white" style="font-size:32px; font-variation-settings:'FILL' 1;">check</span>
+  </div>
+  <p id="overlay-msg" class="font-headline-sm text-headline-sm text-primary text-center px-8">Processando pagamento...</p>
+  <p id="overlay-sub" class="font-body-sm text-body-sm text-on-surface-variant text-center" style="display:none">Redirecionando para seu ingresso...</p>
+</div>
+ 
+<!-- Header -->
+<header class="flex justify-between items-center px-container-margin h-14 w-full z-50 bg-surface border-b border-outline-variant sticky top-0">
+  <button onclick="history.back()" class="flex items-center gap-1 hover:opacity-70 active:scale-95 transition-all bg-transparent border-none cursor-pointer p-1">
+    <span class="material-symbols-outlined text-primary">arrow_back</span>
+  </button>
+  <h1 class="font-headline-sm text-headline-sm text-primary">Pagamento</h1>
+  <div class="w-8"></div>
+</header>
+ 
+<main class="max-w-md mx-auto px-container-margin py-6 pb-32">
+ 
+  <!-- Resumo do pedido -->
+  <section class="bg-surface-container-low border border-outline-variant rounded-xl p-4 mb-6">
+    <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-3">Resumo do Pedido</p>
+    <div class="flex items-start gap-3">
+      <div class="w-14 h-14 rounded-lg bg-primary-container/20 border border-outline-variant flex items-center justify-center flex-shrink-0">
+        <span class="material-symbols-outlined text-primary" style="font-size:28px; font-variation-settings:'FILL' 1;">theater_comedy</span>
+      </div>
+      <div class="flex-1">
+        <p class="font-body-md text-on-surface font-semibold leading-snug">O Fantasma da Ópera</p>
+        <p class="font-body-sm text-on-surface-variant mt-0.5">Teatro Municipal · 24 Out · 20:00</p>
+        <p id="seats-summary" class="font-label-md text-label-md text-primary mt-1 uppercase tracking-wider"></p>
+      </div>
+    </div>
+    <div class="border-t border-outline-variant mt-4 pt-4 space-y-2">
+      <div class="flex justify-between">
+        <span class="font-body-sm text-on-surface-variant">Ingressos</span>
+        <span id="price-ingressos" class="font-body-sm text-on-surface"></span>
+      </div>
+      <div class="flex justify-between">
+        <span class="font-body-sm text-on-surface-variant">Taxa de serviço</span>
+        <span id="price-taxa" class="font-body-sm text-on-surface"></span>
+      </div>
+      <div class="flex justify-between pt-2 border-t border-outline-variant">
+        <span class="font-label-lg text-label-lg text-on-surface uppercase tracking-wider">Total</span>
+        <span id="price-total" class="font-headline-sm text-headline-sm text-primary"></span>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- Método de pagamento -->
+  <section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden mb-6">
+    <div class="flex border-b border-outline-variant">
+      <button class="method-tab active" id="tab-cartao" onclick="switchTab('cartao')">
+        <span class="material-symbols-outlined" style="font-size:16px">credit_card</span>
+        Cartão
+      </button>
+      <button class="method-tab" id="tab-pix" onclick="switchTab('pix')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94pix_powered_by_Banco_Central_%28Brasil%29.svg" alt="Pix" style="height:14px; display:inline-block; vertical-align:middle; margin-right:4px;">
+        PIX
+      </button>
+    </div>
+ 
+    <!-- Painel Cartão -->
+    <div id="panel-cartao" class="p-5 space-y-5">
+ 
+      <!-- Card preview -->
+      <div class="flex justify-center">
+        <div class="card-preview">
+          <div class="card-chip"></div>
+          <div class="card-number-display" id="preview-number">•••• •••• •••• ••••</div>
+          <div class="card-meta">
+            <div>
+              <div class="card-meta-label">Nome</div>
+              <div class="card-meta-value" id="preview-name">SEU NOME</div>
+            </div>
+            <div>
+              <div class="card-meta-label">Validade</div>
+              <div class="card-meta-value" id="preview-expiry">MM/AA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Campos -->
+      <div class="field-group">
+        <label class="field-label">Número do cartão</label>
+        <input class="field-input" id="card-number" type="text" inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="cc-number">
+        <span class="field-error" id="err-number">Número inválido.</span>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Nome no cartão</label>
+        <input class="field-input" id="card-name" type="text" placeholder="Como está impresso" autocomplete="cc-name" style="text-transform:uppercase">
+        <span class="field-error" id="err-name">Informe o nome.</span>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="field-group">
+          <label class="field-label">Validade</label>
+          <input class="field-input" id="card-expiry" type="text" inputmode="numeric" maxlength="5" placeholder="MM/AA" autocomplete="cc-exp">
+          <span class="field-error" id="err-expiry">Data inválida.</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">CVV</label>
+          <input class="field-input" id="card-cvv" type="text" inputmode="numeric" maxlength="4" placeholder="•••" autocomplete="cc-csc">
+          <span class="field-error" id="err-cvv">CVV inválido.</span>
+        </div>
+      </div>
+ 
+      <!-- Parcelas -->
+      <div class="field-group">
+        <label class="field-label">Parcelamento</label>
+        <select class="field-input" id="card-parcelas" style="cursor:pointer; appearance:auto">
+          <option value="1">1x sem juros</option>
+          <option value="2">2x sem juros</option>
+          <option value="3">3x sem juros</option>
+          <option value="6">6x com juros (2% a.m.)</option>
+          <option value="12">12x com juros (2% a.m.)</option>
+        </select>
+      </div>
+ 
+      <button id="btn-pagar-cartao" onclick="pagarCartao()" class="w-full h-14 bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-all shadow-sm hover:opacity-90">
+        <span class="material-symbols-outlined" style="font-size:20px">lock</span>
+        Pagar com segurança
+      </button>
+      <p class="text-center font-label-sm text-label-sm text-on-surface-variant">
+        <span class="material-symbols-outlined" style="font-size:14px; vertical-align:-2px">shield</span>
+        Pagamento criptografado e seguro
+      </p>
+    </div>
+ 
+    <!-- Painel PIX -->
+    <div id="panel-pix" class="p-5" style="display:none">
+      <p class="font-body-sm text-on-surface-variant text-center mb-5">Escaneie o QR Code ou copie a chave PIX. O pagamento é confirmado em até 1 minuto.</p>
+ 
+      <div class="pix-container">
+        <div class="pix-qr" id="pix-qr-grid"></div>
+        <p class="font-label-md text-label-md text-primary">Valor: <span id="pix-valor" class="font-semibold"></span></p>
+        <div class="pix-key font-mono" id="pix-chave">teatro.facil@pagamentos.com.br</div>
+        <button onclick="copiarPix()" class="w-full h-11 border border-primary text-primary rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-primary/5 active:scale-95 transition-all" id="btn-copiar">
+          <span class="material-symbols-outlined" style="font-size:18px">content_copy</span>
+          Copiar chave PIX
+        </button>
+      </div>
+ 
+      <button onclick="simularPix()" class="w-full h-14 bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-all shadow-sm hover:opacity-90 mt-5">
+        <span class="material-symbols-outlined" style="font-size:20px">check_circle</span>
+        Já realizei o pagamento
+      </button>
+      <p class="text-center font-label-sm text-label-sm text-on-surface-variant mt-3">
+        <span class="material-symbols-outlined" style="font-size:14px; vertical-align:-2px">schedule</span>
+        Expira em <span id="pix-countdown" class="font-semibold text-primary">10:00</span>
+      </p>
+    </div>
+  </section>
+ 
+</main>
+ 
+<script>
+  // ─── Dados do localStorage ───────────────────────────────────────────────────
+    const assentos = JSON.parse(localStorage.getItem('assentosSelecionados') || '[]');
+    const totalBruto = parseFloat(localStorage.getItem('totalIngressos') || '0');
+    const taxa = Math.round(totalBruto * 0.1 * 100) / 100;
+    const totalFinal = totalBruto + taxa;
+    
+    function fmtBRL(v) {
+        return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+    
+    // Preenche resumo
+    document.getElementById('seats-summary').textContent =
+        assentos.length > 0
+        ? assentos.length + (assentos.length === 1 ? ' assento' : ' assentos') + ': ' + assentos.sort().join(', ')
+        : '—';
+    document.getElementById('price-ingressos').textContent = fmtBRL(totalBruto);
+    document.getElementById('price-taxa').textContent = fmtBRL(taxa);
+    document.getElementById('price-total').textContent = fmtBRL(totalFinal);
+    document.getElementById('pix-valor').textContent = fmtBRL(totalFinal);
+    
+    // ─── Tabs ────────────────────────────────────────────────────────────────────
+    function switchTab(tab) {
+        document.getElementById('panel-cartao').style.display = tab === 'cartao' ? '' : 'none';
+        document.getElementById('panel-pix').style.display    = tab === 'pix'    ? '' : 'none';
+        document.getElementById('tab-cartao').classList.toggle('active', tab === 'cartao');
+        document.getElementById('tab-pix').classList.toggle('active', tab === 'pix');
+    }
+    
+    // ─── Máscaras de input ───────────────────────────────────────────────────────
+    document.getElementById('card-number').addEventListener('input', function() {
+        let v = this.value.replace(/\D/g, '').slice(0, 16);
+        this.value = v.replace(/(.{4})/g, '$1 ').trim();
+        // Detecta bandeira
+        document.getElementById('preview-number').textContent =
+        v.padEnd(16, '•').replace(/(.{4})/g, '$1 ').trim();
+        clearErr('number');
+    });
+    
+    document.getElementById('card-name').addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+        document.getElementById('preview-name').textContent = this.value || 'SEU NOME';
+        clearErr('name');
+    });
+    
+    document.getElementById('card-expiry').addEventListener('input', function() {
+        let v = this.value.replace(/\D/g, '').slice(0, 4);
+        if (v.length >= 3) v = v.slice(0,2) + '/' + v.slice(2);
+        this.value = v;
+        document.getElementById('preview-expiry').textContent = v || 'MM/AA';
+        clearErr('expiry');
+    });
+    
+    document.getElementById('card-cvv').addEventListener('input', function() {
+        this.value = this.value.replace(/\D/g, '').slice(0, 4);
+        clearErr('cvv');
+    });
+    
+    function clearErr(id) {
+        document.getElementById('err-' + id).classList.remove('show');
+        document.getElementById('card-' + (id === 'number' ? 'number' : id === 'name' ? 'name' : id === 'expiry' ? 'expiry' : 'cvv')).classList.remove('invalid');
+    }
+    
+    // ─── Validação cartão ────────────────────────────────────────────────────────
+    function validarCartao() {
+        let ok = true;
+    
+        const num = document.getElementById('card-number').value.replace(/\s/g, '');
+        if (num.length < 16) {
+        showErr('number'); ok = false;
+        }
+    
+        const name = document.getElementById('card-name').value.trim();
+        if (name.length < 3) {
+        showErr('name'); ok = false;
+        }
+    
+        const exp = document.getElementById('card-expiry').value;
+        if (!/^\d{2}\/\d{2}$/.test(exp)) {
+        showErr('expiry'); ok = false;
+        } else {
+        const [mm, aa] = exp.split('/').map(Number);
+        const now = new Date();
+        const cardDate = new Date(2000 + aa, mm - 1);
+        if (mm < 1 || mm > 12 || cardDate < new Date(now.getFullYear(), now.getMonth())) {
+            showErr('expiry'); ok = false;
+        }
+        }
+    
+        const cvv = document.getElementById('card-cvv').value;
+        if (cvv.length < 3) {
+        showErr('cvv'); ok = false;
+        }
+    
+        return ok;
+    }
+    
+    function showErr(id) {
+        document.getElementById('err-' + id).classList.add('show');
+        const fieldMap = { number: 'card-number', name: 'card-name', expiry: 'card-expiry', cvv: 'card-cvv' };
+        document.getElementById(fieldMap[id]).classList.add('invalid');
+    }
+    
+    // ─── Pagar com cartão ────────────────────────────────────────────────────────
+    function pagarCartao() {
+        if (!validarCartao()) return;
+        iniciarProcessamento();
+    
+        setTimeout(() => {
+        mostrarSucesso('Pagamento aprovado!');
+        setTimeout(() => { window.location.href = 'ingresso.html'; }, 1800);
+        }, 2500);
+    }
+    
+    // ─── PIX: gerar QR Code visual ───────────────────────────────────────────────
+    (function gerarQR() {
+        const grid = document.getElementById('pix-qr-grid');
+        const pattern = [
+        1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,
+        1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,
+        1,0,1,1,1,0,1,0,1,0,1,1,1,0,1,0,
+        1,1,1,1,1,1,1,0,0,1,0,1,0,0,1,0,
+        0,1,0,1,0,0,0,1,0,0,1,0,0,1,0,1,
+        1,1,0,0,1,0,1,0,1,0,0,1,1,0,1,0,
+        1,1,1,1,1,1,1,0,0,1,0,0,1,1,0,1,
+        0,0,0,0,0,0,0,0,1,0,1,1,0,0,1,0,
+        1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,
+        1,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,
+        1,0,1,1,1,0,1,0,0,1,0,1,1,0,1,0,
+        1,0,1,1,1,0,1,0,1,0,1,0,0,1,0,1,
+        1,0,1,1,1,0,1,1,0,1,1,0,1,0,1,0,
+        1,0,0,0,0,0,1,0,1,1,0,0,1,0,0,1,
+        1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+        ];
+    
+        // 8x8 grid (64 cells)
+        for (let i = 0; i < 64; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'pix-cell';
+        cell.style.background = pattern[i] ? '#003057' : 'white';
+        grid.appendChild(cell);
+        }
+    })();
+    
+    // ─── PIX: countdown ─────────────────────────────────────────────────────────
+    let pixSeconds = 600;
+    let pixTimer = setInterval(() => {
+        pixSeconds--;
+        if (pixSeconds <= 0) { clearInterval(pixTimer); pixSeconds = 0; }
+        const m = Math.floor(pixSeconds / 60);
+        const s = pixSeconds % 60;
+        document.getElementById('pix-countdown').textContent =
+        String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    }, 1000);
+    
+    // ─── PIX: copiar ─────────────────────────────────────────────────────────────
+    function copiarPix() {
+        const chave = 'teatro.facil@pagamentos.com.br';
+        navigator.clipboard.writeText(chave).catch(() => {});
+        const btn = document.getElementById('btn-copiar');
+        btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:18px">check</span> Chave copiada!';
+        btn.style.background = '#f0eee9';
+        setTimeout(() => {
+        btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:18px">content_copy</span> Copiar chave PIX';
+        btn.style.background = '';
+        }, 2500);
+    }
+    
+    // ─── PIX: simular confirmação ────────────────────────────────────────────────
+    function simularPix() {
+        clearInterval(pixTimer);
+        iniciarProcessamento();
+        setTimeout(() => {
+        mostrarSucesso('PIX confirmado!');
+        setTimeout(() => { window.location.href = 'ingresso.html'; }, 1800);
+        }, 2000);
+    }
+    
+    // ─── Overlay helpers ─────────────────────────────────────────────────────────
+    function iniciarProcessamento() {
+        const overlay = document.getElementById('processing-overlay');
+        overlay.classList.add('show');
+        document.getElementById('overlay-spinner').style.display = '';
+        document.getElementById('overlay-success').style.display = 'none';
+        document.getElementById('overlay-msg').textContent = 'Processando pagamento...';
+        document.getElementById('overlay-sub').style.display = 'none';
+    }
+    
+    function mostrarSucesso(msg) {
+        document.getElementById('overlay-spinner').style.display = 'none';
+        document.getElementById('overlay-success').style.display = 'flex';
+        document.getElementById('overlay-msg').textContent = msg;
+        document.getElementById('overlay-sub').style.display = '';
+    }
+</script>
+</body>
+</html>

@@ -237,4 +237,106 @@
 <span class="material-symbols-outlined text-[20px]" data-icon="event_seat">event_seat</span>
 </button>
 </div>
+<script>
+  // ─── Estado de seleção ────────────────────────────────────────────────────
+  let dataSelected  = null;
+  let horaSelected  = null;
+
+  // ─── Seleção de data ──────────────────────────────────────────────────────
+  const dateCards = document.querySelectorAll('.flex.gap-stack-md.overflow-x-auto .flex-shrink-0');
+
+  dateCards.forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      // Remove estado ativo de todos
+      dateCards.forEach(c => {
+        c.classList.remove('bg-primary', 'text-on-primary', 'shadow-md');
+        c.classList.add('bg-surface-container', 'border', 'border-outline-variant/30');
+        // Recolore textos internos para inativo
+        c.querySelectorAll('span').forEach(s => {
+          s.classList.remove('text-on-primary');
+          s.classList.add('text-on-surface', 'text-on-surface-variant');
+        });
+      });
+
+      // Ativa o clicado
+      card.classList.add('bg-primary', 'text-on-primary', 'shadow-md');
+      card.classList.remove('bg-surface-container', 'border', 'border-outline-variant/30');
+      card.querySelectorAll('span').forEach(s => {
+        s.classList.add('text-on-primary');
+        s.classList.remove('text-on-surface', 'text-on-surface-variant');
+      });
+
+      // Salva data selecionada
+      const spans = card.querySelectorAll('span');
+      const mes   = spans[0]?.textContent.trim() || '';
+      const dia   = spans[1]?.textContent.trim() || '';
+      const diaSemana = spans[2]?.textContent.trim() || '';
+      dataSelected = `${diaSemana}, ${dia} ${mes}`;
+      updateCTA();
+    });
+  });
+
+  // ─── Seleção de horário ───────────────────────────────────────────────────
+  const timeButtons = document.querySelectorAll('.flex.flex-wrap.gap-stack-md button');
+
+  timeButtons.forEach(btn => {
+    // Ignora botões desabilitados (esgotados)
+    if (btn.classList.contains('cursor-not-allowed')) return;
+
+    btn.addEventListener('click', () => {
+      // Remove estado ativo de todos os horários
+      timeButtons.forEach(b => {
+        if (b.classList.contains('cursor-not-allowed')) return;
+        b.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        b.classList.add('border', 'border-primary', 'text-primary');
+        b.style.background = '';
+      });
+
+      // Ativa o clicado
+      btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+      btn.classList.remove('border', 'border-primary', 'text-primary', 'border-outline-variant');
+
+      horaSelected = btn.textContent.trim();
+      updateCTA();
+    });
+  });
+
+  // ─── Atualiza botão CTA ───────────────────────────────────────────────────
+  const ctaBtn = document.querySelector('.fixed.bottom-0 button');
+
+  function updateCTA() {
+    if (dataSelected && horaSelected) {
+      ctaBtn.classList.remove('opacity-60');
+      ctaBtn.title = '';
+    } else {
+      ctaBtn.classList.add('opacity-60');
+      ctaBtn.title = 'Selecione data e horário';
+    }
+  }
+
+  // Começa com CTA levemente opaco até que data+hora sejam selecionados
+  ctaBtn.classList.add('opacity-60');
+
+  // ─── Botão "Selecionar Assentos" ─────────────────────────────────────────
+  ctaBtn.addEventListener('click', () => {
+    if (!dataSelected || !horaSelected) {
+      alert('Por favor, selecione uma data e um horário antes de continuar.');
+      return;
+    }
+
+    // Salva escolhas no localStorage para uso futuro (ex: confirmação)
+    localStorage.setItem('pecaData',  dataSelected);
+    localStorage.setItem('pecaHora',  horaSelected);
+    localStorage.setItem('pecaNome',  'O Fantasma da Ópera');
+    localStorage.setItem('pecaLocal', 'Teatro do Parque');
+
+    window.location.href = 'assentos.html';
+  });
+
+  // ─── Botão voltar ─────────────────────────────────────────────────────────
+  document.querySelector('header button:first-child').addEventListener('click', () => {
+    history.back();
+  });
+</script>
 </body></html>

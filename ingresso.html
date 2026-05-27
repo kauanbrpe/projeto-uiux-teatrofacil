@@ -226,4 +226,46 @@
 <span class="font-label-sm text-label-sm">Perfil</span>
 </div>
 </nav>
+<script>
+  // ─── Preenche dados do ingresso com localStorage ──────────────────────────
+    const assentos  = JSON.parse(localStorage.getItem('assentosSelecionados') || '[]');
+    const pecaData  = localStorage.getItem('pecaData')  || '—';
+    const pecaHora  = localStorage.getItem('pecaHora')  || '—';
+    const pecaLocal = localStorage.getItem('pecaLocal') || 'Teatro Municipal';
+
+    // Data e Hora
+    const dataHoraEl = document.querySelector('.grid.grid-cols-2 .text-right:first-of-type p.font-body-md');
+    if (dataHoraEl) dataHoraEl.textContent = pecaData + ', ' + pecaHora;
+
+    // Local
+    const localEl = document.querySelector('.grid.grid-cols-2 div:first-child p.font-body-md');
+    if (localEl) localEl.textContent = pecaLocal;
+
+    // Assentos
+    const assentosEl = document.querySelectorAll('.grid.grid-cols-2 .font-body-md')[2];
+    if (assentosEl && assentos.length > 0) {
+        assentosEl.textContent = assentos.sort().join(', ');
+    }
+
+    // ─── Botão Início da nav vai para home ────────────────────────────────────
+    const navBtns = document.querySelectorAll('nav .flex-col');
+    navBtns[0]?.addEventListener('click', () => { window.location.href = 'home.html'; });
+
+    // ─── Botão voltar vai para home ───────────────────────────────────────────
+    document.querySelector('header .flex.items-center')
+        ?.addEventListener('click', () => { window.location.href = 'home.html'; });
+
+    // ─── Redireciona para home após 8 segundos ────────────────────────────────
+    setTimeout(() => {
+        window.location.href = 'home.html';
+    }, 8000);
+
+    // ─── Limpa localStorage de compra ────────────────────────────────────────
+    localStorage.removeItem('assentosSelecionados');
+    localStorage.removeItem('totalIngressos');
+    localStorage.removeItem('pecaData');
+    localStorage.removeItem('pecaHora');
+    localStorage.removeItem('pecaNome');
+    localStorage.removeItem('pecaLocal');
+</script>
 </body></html>

@@ -117,7 +117,7 @@
 <header class="flex justify-between items-center px-container-margin h-14 w-full z-50 bg-surface dark:bg-surface border-b border-outline-variant full-width top-0 sticky">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
-<span class="font-label-lg text-label-lg text-primary">São Paulo, SP</span>
+<span class="font-label-lg text-label-lg text-primary">Recife, PE</span>
 </div>
 <h1 class="font-headline-md text-headline-md text-primary">TeatroFácil</h1>
 <button class="transition-all duration-200 active:scale-95 hover:opacity-80">
@@ -133,10 +133,10 @@
 <div class="absolute bottom-0 left-0 p-gutter flex flex-col gap-base">
 <span class="bg-tertiary-fixed text-on-tertiary-fixed w-fit px-2 py-0.5 rounded font-label-sm text-label-sm uppercase tracking-wider">Destaque da Semana</span>
 <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-surface-bright">O Fantasma da Ópera</h2>
-<p class="font-body-sm text-body-sm text-surface-container-low opacity-90">Teatro Renault • São Paulo</p>
+<p class="font-body-sm text-body-sm text-surface-container-low opacity-90">Teatro do Parque • Recife</p>
 <button class="mt-base bg-surface-bright text-primary w-fit px-gutter py-3 rounded-lg font-label-lg text-label-lg flex items-center gap-2 shadow-sm active:scale-95 transition-transform">
-                    Garantir Ingresso
-                    <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+                Garantir Ingresso
+        <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </div>
 </div>
@@ -252,4 +252,17 @@
 <span class="font-label-sm text-label-sm">Perfil</span>
 </button>
 </nav>
+<script>
+        // Botão "Garantir Ingresso" do hero redireciona para detalhes
+        document.querySelector('button.bg-surface-bright').addEventListener('click', () => {
+                window.location.href = 'details-peca.html';
+        });
+
+        // Botões "Comprar" dos cards também redirecionam
+        document.querySelectorAll('button.bg-primary').forEach(btn => {
+        btn.addEventListener('click', () => {
+                window.location.href = 'details-peca.html';
+        });
+        });
+</script>
 </body></html>

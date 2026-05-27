@@ -175,14 +175,16 @@
                 setTimeout(() => {
                     document.body.style.opacity = '0.5';
                     document.body.style.transition = 'opacity 1s ease';
+                    window.location.href = 'login.html';
                 }, 500);
             } else {
                 // Random increments to feel "organic"
                 width += Math.floor(Math.random() * 15) + 1;
                 if (width > 95 && width < 100) width = 95; // Pause slightly at the end
                 progressBar.style.width = width + '%';
+                window.location.href = 'login.html';
             }
-        }, 600);
+        }, 2000);
 
         // Micro-interaction: Icon tilt based on orientation (if supported)
         if (window.DeviceOrientationEvent) {
