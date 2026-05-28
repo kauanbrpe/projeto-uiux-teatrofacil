@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TeatroFácil - Meus Ingressos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "surface-container": "#eeeef0",
+          "surface-container-high": "#e8e8ea",
+          "surface-container-highest": "#e2e2e5",
+          "surface-container-low": "#f3f3f6",
+          "surface-container-lowest": "#ffffff",
+          "on-surface": "#1a1c1e",
+          "on-surface-variant": "#43474e",
+          "on-background": "#1a1c1e",
+          "background": "#f9f9fc",
+          "surface": "#f9f9fc",
+          "primary": "#003057",
+          "primary-container": "#003057",
+          "on-primary": "#ffffff",
+          "on-primary-container": "#7699c5",
+          "secondary": "#605e57",
+          "secondary-container": "#e3dfd6",
+          "on-secondary-container": "#64635b",
+          "outline": "#73777f",
+          "outline-variant": "#c3c6cf",
+          "tertiary-fixed-dim": "#e9c176",
+          "on-tertiary-container": "#b5914c",
+          "error": "#ba1a1a",
+          "inverse-surface": "#2f3133",
+        },
+        fontFamily: {
+          "headline-sm": ["Playfair Display"],
+          "headline-md": ["Playfair Display"],
+          "headline-lg": ["Playfair Display"],
+          "label-sm": ["Inter"],
+          "label-md": ["Inter"],
+          "label-lg": ["Inter"],
+          "body-sm": ["Inter"],
+          "body-md": ["Inter"],
+        },
+        fontSize: {
+          "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+          "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+          "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+          "label-sm": ["10px", { lineHeight: "14px", letterSpacing: "0.05em", fontWeight: "500" }],
+          "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+          "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600" }],
+          "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+          "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+        },
+        spacing: {
+          "container-margin": "20px",
+          "stack-sm": "4px",
+          "stack-md": "16px",
+          "stack-lg": "32px",
+          "section-gap": "48px",
+          "base": "8px",
+          "gutter": "16px",
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+  }
+  body { min-height: max(884px, 100dvh); }
+
+  .ticket-card {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,48,87,0.08);
+    border: 1px solid #e2e2e5;
+  }
+  .ticket-stripe {
+    height: 6px;
+    background: linear-gradient(90deg, #003057 0%, #234871 50%, #7699c5 100%);
+  }
+  .ticket-perforation {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 8px;
+    background: white;
+  }
+  .ticket-perforation::before,
+  .ticket-perforation::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #f9f9fc;
+    flex-shrink: 0;
+    border: 1px solid #e2e2e5;
+  }
+  .ticket-perforation .dashed-line {
+    flex: 1;
+    border-top: 2px dashed #e2e2e5;
+    margin: 0 8px;
+  }
+
+  /* Tab */
+  .tab-btn {
+    flex: 1;
+    padding: 10px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    background: transparent;
+    color: #73777f;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn.active {
+    color: #003057;
+    border-bottom: 2px solid #003057;
+  }
+
+  /* Empty state */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 32px;
+    text-align: center;
+  }
+
+  /* Mini QR */
+  .mini-qr {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 2px;
+    width: 52px;
+    height: 52px;
+    padding: 4px;
+    background: white;
+    border: 1px solid #e2e2e5;
+    border-radius: 4px;
+  }
+  .mini-qr-cell { border-radius: 1px; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .badge-upcoming { background: #d2e4ff; color: #003057; }
+  .badge-past     { background: #eeeef0; color: #43474e; }
+  .badge-premium  { background: #ffdea5; color: #241800; }
+</style>
+</head>
+
+<body class="bg-background text-on-background font-body-md pb-24">
+
+<!-- Header -->
+<header class="flex justify-between items-center px-container-margin h-14 w-full z-50 bg-surface border-b border-outline-variant sticky top-0">
+  <button onclick="history.back()" class="p-1 bg-transparent border-none cursor-pointer hover:opacity-70 active:scale-95 transition-all">
+    <span class="material-symbols-outlined text-primary">arrow_back</span>
+  </button>
+  <h1 class="font-headline-sm text-headline-sm text-primary">Meus Ingressos</h1>
+  <div class="w-8"></div>
+</header>
+
+<main class="max-w-md mx-auto px-container-margin pt-6">
+
+  <!-- Tabs -->
+  <div class="flex border-b border-outline-variant mb-6">
+    <button class="tab-btn active" id="tab-proximos" onclick="switchTab('proximos')">Próximos</button>
+    <button class="tab-btn" id="tab-passados" onclick="switchTab('passados')">Histórico</button>
+  </div>
+
+  <!-- Painel: Próximos -->
+  <div id="panel-proximos">
+    <!-- Ingresso dinâmico (do localStorage) -->
+    <div id="ingresso-dinamico" style="display:none" class="mb-5">
+      <div class="ticket-card">
+        <div class="ticket-stripe"></div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <span class="badge badge-upcoming mb-2">Próximo evento</span>
+              <h3 class="font-headline-sm text-headline-sm text-primary mt-1" id="dyn-peca">—</h3>
+              <p class="font-body-sm text-on-surface-variant mt-0.5" id="dyn-local">—</p>
+            </div>
+            <div class="mini-qr" id="dyn-qr"></div>
+          </div>
+          <div class="grid grid-cols-3 gap-3 mt-4">
+            <div>
+              <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Data</p>
+              <p class="font-label-lg text-label-lg text-on-surface" id="dyn-data">—</p>
+            </div>
+            <div>
+              <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Hora</p>
+              <p class="font-label-lg text-label-lg text-on-surface" id="dyn-hora">—</p>
+            </div>
+            <div>
+              <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Assentos</p>
+              <p class="font-label-lg text-label-lg text-on-surface" id="dyn-assentos">—</p>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-perforation"><div class="dashed-line"></div></div>
+        <div class="px-4 py-3 flex items-center justify-between">
+          <p class="font-label-md text-label-md text-on-surface-variant">
+            Código: <span class="font-mono text-primary" id="dyn-codigo">#TF-0000-X000</span>
+          </p>
+          <button onclick="expandirIngresso()" class="flex items-center gap-1 font-label-lg text-label-lg text-primary hover:opacity-70 active:scale-95 transition-all bg-transparent border-none cursor-pointer">
+            Ver ingresso
+            <span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ingresso fixo de exemplo 1 -->
+    <div class="ticket-card mb-5">
+      <div class="ticket-stripe"></div>
+      <div class="p-4">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="badge badge-upcoming mb-2">Próximo evento</span>
+            <h3 class="font-headline-sm text-headline-sm text-primary mt-1">Chicago: O Musical</h3>
+            <p class="font-body-sm text-on-surface-variant mt-0.5">Teatro Santa Isabel</p>
+          </div>
+          <div class="mini-qr" id="qr-chicago"></div>
+        </div>
+        <div class="grid grid-cols-3 gap-3 mt-4">
+          <div>
+            <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Data</p>
+            <p class="font-label-lg text-label-lg text-on-surface">Nov 08</p>
+          </div>
+          <div>
+            <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Hora</p>
+            <p class="font-label-lg text-label-lg text-on-surface">19:30</p>
+          </div>
+          <div>
+            <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Assentos</p>
+            <p class="font-label-lg text-label-lg text-on-surface">C3, C4</p>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-perforation"><div class="dashed-line"></div></div>
+      <div class="px-4 py-3 flex items-center justify-between">
+        <p class="font-label-md text-label-md text-on-surface-variant">
+          Código: <span class="font-mono text-primary">#TF-4471-A203</span>
+        </p>
+        <button class="flex items-center gap-1 font-label-lg text-label-lg text-primary hover:opacity-70 active:scale-95 transition-all bg-transparent border-none cursor-pointer">
+          Ver ingresso
+          <span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Empty state quando não há nenhum -->
+    <div id="empty-proximos" style="display:none" class="empty-state">
+      <div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center mb-4">
+        <span class="material-symbols-outlined text-on-surface-variant" style="font-size:36px">confirmation_number</span>
+      </div>
+      <h3 class="font-headline-sm text-headline-sm text-primary mb-2">Nenhum ingresso</h3>
+      <p class="font-body-sm text-on-surface-variant mb-6 max-w-[240px]">Você ainda não comprou ingressos. Explore as peças disponíveis!</p>
+      <button onclick="window.location.href='home.html'" class="px-6 h-12 bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+        <span class="material-symbols-outlined" style="font-size:18px">search</span>
+        Explorar peças
+      </button>
+    </div>
+  </div>
+
+  <!-- Painel: Histórico -->
+  <div id="panel-passados" style="display:none">
+
+    <div class="ticket-card mb-5 opacity-70">
+      <div style="height:6px; background:#c3c6cf"></div>
+      <div class="p-4">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="badge badge-past mb-2">Encerrado</span>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Hamlet: A Vingança</h3>
+            <p class="font-body-sm text-on-surface-variant mt-0.5">Teatro do Parque</p>
+          </div>
+          <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-size:24px; font-variation-settings:'FILL' 1">check_circle</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-3 mt-4">
+          <div>
+            <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Data</p>
+            <p class="font-label-lg text-label-lg text-on-surface">Out 03</p>
+          </div>
+          <div>
+            <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Hora</p>
+            <p class="font-label-lg text-label-lg text-on-surface">20:00</p>
+          </div>
+          <div>
+            <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Assentos</p>
+            <p class="font-label-lg text-label-lg text-on-surface">B2, B3</p>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-perforation"><div class="dashed-line"></div></div>
+      <div class="px-4 py-3 flex items-center justify-between">
+        <p class="font-label-md text-label-md text-on-surface-variant">
+          Código: <span class="font-mono">#TF-3312-B099</span>
+        </p>
+        <button class="flex items-center gap-1 font-label-lg text-label-lg text-on-surface-variant bg-transparent border-none cursor-pointer">
+          Ver detalhes
+          <span class="material-symbols-outlined" style="font-size:16px">chevron_right</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="ticket-card mb-5 opacity-70">
+      <div style="height:6px; background:#c3c6cf"></div>
+      <div class="p-4">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="badge badge-past mb-2">Encerrado</span>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Esperando Godot</h3>
+            <p class="font-body-sm text-on-surface-variant mt-0.5">Teatro Luiz Mendonça</p>
+          </div>
+          <div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-size:24px; font-variation-settings:'FILL' 1">check_circle</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-3 mt-4">
+          <div>
+            <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Data</p>
+            <p class="font-label-lg text-label-lg text-on-surface">Set 15</p>
+          </div>
+          <div>
+            <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Hora</p>
+            <p class="font-label-lg text-label-lg text-on-surface">19:00</p>
+          </div>
+          <div>
+            <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-0.5">Assentos</p>
+            <p class="font-label-lg text-label-lg text-on-surface">E5, E6</p>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-perforation"><div class="dashed-line"></div></div>
+      <div class="px-4 py-3">
+        <p class="font-label-md text-label-md text-on-surface-variant">
+          Código: <span class="font-mono">#TF-2201-C044</span>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- Bottom Nav -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 px-4 bg-surface/90 backdrop-blur-md border-t border-outline-variant z-50">
+  <button onclick="window.location.href='home.html'" class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-transform bg-transparent border-none cursor-pointer">
+    <span class="material-symbols-outlined">home</span>
+    <span class="font-label-sm text-label-sm">Início</span>
+  </button>
+  <button class="flex flex-col items-center justify-center text-primary active:scale-90 transition-transform bg-transparent border-none cursor-pointer">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">confirmation_number</span>
+    <span class="font-label-sm text-label-sm font-bold">Ingressos</span>
+  </button>
+  <button onclick="window.location.href='tela-meuperfil.html'" class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-transform bg-transparent border-none cursor-pointer">
+    <span class="material-symbols-outlined">person</span>
+    <span class="font-label-sm text-label-sm">Perfil</span>
+  </button>
+</nav>
+
+<script>
+  // ─── Tabs ────────────────────────────────────────────────────────────────────
+  function switchTab(tab) {
+    document.getElementById('panel-proximos').style.display = tab === 'proximos' ? '' : 'none';
+    document.getElementById('panel-passados').style.display = tab === 'passados' ? '' : 'none';
+    document.getElementById('tab-proximos').classList.toggle('active', tab === 'proximos');
+    document.getElementById('tab-passados').classList.toggle('active', tab === 'passados');
+  }
+
+  // ─── Mini QR generator ───────────────────────────────────────────────────────
+  function buildMiniQR(containerId) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    const pattern = [1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,0,1,0,0,0,1,0,1,0,1,1,1,0,0,1,0,0,0,0,1,0];
+    pattern.forEach(v => {
+      const cell = document.createElement('div');
+      cell.className = 'mini-qr-cell';
+      cell.style.background = v ? '#003057' : 'white';
+      el.appendChild(cell);
+    });
+  }
+  buildMiniQR('qr-chicago');
+  buildMiniQR('dyn-qr');
+
+  // ─── Dados do localStorage ───────────────────────────────────────────────────
+  const assentos  = JSON.parse(localStorage.getItem('assentosSelecionados') || '[]');
+  const pecaNome  = localStorage.getItem('pecaNome')  || '';
+  const pecaLocal = localStorage.getItem('pecaLocal') || '';
+  const pecaData  = localStorage.getItem('pecaData')  || '';
+  const pecaHora  = localStorage.getItem('pecaHora')  || '';
+
+  if (pecaNome) {
+    document.getElementById('ingresso-dinamico').style.display = '';
+    document.getElementById('dyn-peca').textContent    = pecaNome;
+    document.getElementById('dyn-local').textContent   = pecaLocal || 'Teatro Municipal';
+    document.getElementById('dyn-data').textContent    = pecaData  || '—';
+    document.getElementById('dyn-hora').textContent    = pecaHora  || '—';
+    document.getElementById('dyn-assentos').textContent = assentos.length > 0 ? assentos.sort().join(', ') : '—';
+    // Código aleatório baseado no nome
+    const codigo = '#TF-' + Math.floor(1000 + Math.random() * 9000) + '-X' + Math.floor(100 + Math.random() * 900);
+    document.getElementById('dyn-codigo').textContent = codigo;
+  }
+
+  // ─── Ver ingresso completo ───────────────────────────────────────────────────
+  function expandirIngresso() {
+    window.location.href = 'ingresso.html';
+  }
+</script>
+</body>
+</html>
